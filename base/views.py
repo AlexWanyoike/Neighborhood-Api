@@ -29,6 +29,16 @@ class NeighborhoodList(APIView):
         serializers=NeighborhoodSerializer(data=request.data)
         if serializers.is_valid():
             serializers.save()
+
+            users=serializers.data
+            response={
+                'data':{
+                'users':dict(users),
+                'status':'success',
+                'message':'user created successfully',
+                }
+            }
+
             return Response(serializers.data, status=status.HTTP_200_OK)
         return Response(serializers.errors , status= status.HTTP_400_BAD_REQUEST)
 
