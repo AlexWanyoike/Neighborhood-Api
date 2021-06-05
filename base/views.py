@@ -8,10 +8,12 @@ from .models import *
 from .serializers import *
 from .permissions import IsAdminOrReadOnly
 from django.http import JsonResponse
+from rest_framework import generics
+from rest_framework import filters
 #from django.contrib.auth.decorators import login_required.
 # Create your views here.
 class NeighborhoodList(APIView):
-
+  serializer_class=NeighborhoodSerializer
   permission_classes = (IsAdminOrReadOnly,)
 
   def get_neighborhood(self, pk):
@@ -62,11 +64,8 @@ class NeighborhoodList(APIView):
     neighborhood.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
 
-  
-
-
 class BusinessList(APIView):
-      
+  serializer_class=BusinessSerializer    
   def get_business(self, pk):
     try:
         return Business.objects.get(pk=pk)
@@ -116,7 +115,8 @@ class BusinessList(APIView):
     return Response(status=status.HTTP_204_NO_CONTENT)
 
 class UserList(APIView):
-      
+  serializer_class = UserSerializer  
+
   def get_users(self,pk):
     try:
         return User.objects.get(pk=pk)
@@ -163,4 +163,55 @@ class UserList(APIView):
   def delete(self,request,pk,format=None):
     users=self.get_users(pk)
     users.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+class PostList(APIView):
+  serializer_class=PostSerializer
+
+  def get_post(self, pk):
+    try:
+      return Post.objects.get(pk=pk)
+    except Post.DoesNotExist:
+      raise Http404()
+
+  def get(self,request,format=None):
+    post=Post.objects.all()
+    serializers=UserSerializer(post, many=True)
+    return Response(serializers.data)
+  
+  def post(self, request,format=None):
+    serializers = PostSerializer(data=request.data)
+    if serializers.is_valid():
+      serializers.save()
+      post = serializers.data
+      response={
+        'data':{
+          'post':dict(post),
+          'status':'success',
+          'message':'Post created successfully',
+        }
+      }
+      return Response(response, status=status.HTTP_200_OK)
+    return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+  def put(self, request, format=None):
+    post = self.get_post(pk)
+    serializers = PostSerializer(data=request.data)
+    if serializers.is_valid():
+      serializers.save()
+      post_list=serializers.data
+      response = {
+        'data': {
+            'post': dict(post_list),
+            'status': 'success',
+            'message': 'Post updated successfully',
+        }
+      }
+      return Response(response, status=status.HTTP_200_OK)
+    else:
+      return Response(serializers.errors,status=status.HTTP_400_BAD_REQUEST)
+
+  def delete(self, request, pk, format=None):
+    post = self.get_post(pk)
+    post.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)

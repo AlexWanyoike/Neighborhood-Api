@@ -10,8 +10,8 @@ from tinymce.models import HTMLField
 class Neighborhood(models.Model):
     name = models.CharField(max_length=30)
     location = models.CharField(max_length=50) 
-    occupants_count = models.FloatField(min_length=100)
-    description = models.TextField(min_length= 6)
+    occupants_count = models.CharField(max_length=10 , default='', null=False)
+    description = models.TextField(null= False ,default='')
 
     def __str__(self):
         return self.name
@@ -33,10 +33,10 @@ class Neighborhood(models.Model):
 
 class User(models.Model):
       
-    user = models.OneToOneField(User, on_delete=models.CASCADE ) 
+    user = models.OneToOneField(User, on_delete=models.CASCADE , default='' ) 
     name = models.CharField(max_length=50)
     email = models. EmailField()
-    profile_pic = models.ImageField(upload_to='media/')
+    profile_pic = models.ImageField(upload_to='media/', default='', null=False)
     neighborhood = models.ForeignKey(Neighborhood, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -50,8 +50,8 @@ class User(models.Model):
 
 class Business(models.Model):
     name=models.CharField(max_length=50)
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
-    description = models.TextField(min_length=10, max_length=300)
+    user=models.ForeignKey(User,on_delete=models.CASCADE , default='')
+    description = models.TextField(max_length=300, default='')
     email=models.EmailField()
     neighborhood=models.ForeignKey(Neighborhood,on_delete=models.CASCADE)
 
@@ -73,9 +73,9 @@ class Business(models.Model):
       update = cls.objects.filter(id=id).update(name=name)
       return update 
 
-class Post(model.models):
+class Post(models.Model):
       
-  user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='posts',null=true)
+  user=models.ForeignKey(User,on_delete=models.CASCADE ,default='')
   title = models.CharField(max_length=160)
   content = models.TextField()
   date_posted = models.DateTimeField(auto_now_add=True)
