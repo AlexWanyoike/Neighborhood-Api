@@ -3,6 +3,7 @@ from django.db import models
 import datetime as dt
 from django.contrib.auth.models import User 
 from django.db.models.base import Model
+from tinymce.models import HTMLField
 # from django.contrib.auth.models import User
 # Create your models here.
 
@@ -92,3 +93,6 @@ class Post(model.models):
   def update_content(self , new_content):
     self.content = new_content
     self.save()
+
+  class Meta:
+    ordering = ['date_posted']
