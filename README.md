@@ -2,7 +2,7 @@
 
 ## Description
 
-This project aims to give users the ability to get first hand information of the news, announcements and business in their various localities. A user has the ability to post a announcement , business, update their location and edit their profile.  
+This project aims to give users the ability to get first hand information on the news, announcements, and business in their various localities. A user has the ability to post an announcement, business, update their location and edit their profile. 
 ## Features
 
 - User:
@@ -18,7 +18,7 @@ This project aims to give users the ability to get first hand information of the
 ## Prerequisites
 
 - Django
-- python3.9
+- python3.8.5
 - pip
 - virtualenv
 
@@ -26,7 +26,7 @@ This project aims to give users the ability to get first hand information of the
 
 In your terminal:
 
-$ git clone https://github.com/AlexWanyoike/Rate--Api.git
+$ git clone https://github.com/AlexWanyoike/Neighborhood-Api.git
 ## Running the Application
 
 - Installation on the Application
@@ -67,7 +67,7 @@ This project was generated with
 
 ## Link to Deployed Site:
 
-https://productrate.herokuapp.com/
+
 
 ## Support , Bugs and Contact Details
 
@@ -78,6 +78,6 @@ alex.wanyoike12@gmail.com
 
 ## License and Copyright
 
-[LICENSE]()
+[LICENSE](https://github.com/AlexWanyoike/Neighborhood-Api/blob/d1980ff36d5ce2ece021347e5cf1b68ed0a73eb5/LICENSE)
 
 (C) Copyright 2021 Alex Wanyoike
