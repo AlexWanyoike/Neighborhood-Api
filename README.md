@@ -1,15 +1,15 @@
-# Instagram Clone
+# Neighborhood Watch API
 
 ## Description
 
-This project aims to come with a website where users have the ability to post, review and have access of various websites and rank based on the Design, Usability and Content. Users have the ability to upload, comment and give a rating.
+This project aims to give users the ability to get first hand information of the news, announcements and business in their various localities. A user has the ability to post a announcement , business, update their location and edit their profile.  
 ## Features
 
 - User:
   - Login and create a profile.
-  - Upload Projects with decription and live Links
-  - Search for username
-  - Review a project 
+  - Upload post of the various activities
+  - Search for business and users
+  - Look up ammenities in the area
   - Rate a project
   
 
