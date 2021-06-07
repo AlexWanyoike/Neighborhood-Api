@@ -10,6 +10,7 @@ from .permissions import IsAdminOrReadOnly
 from django.http import JsonResponse
 from rest_framework import generics
 from rest_framework import filters
+from django.core.files.storage import default_storage
 #from django.contrib.auth.decorators import login_required.
 # Create your views here.
 class NeighborhoodList(APIView):
@@ -215,3 +216,10 @@ class PostList(APIView):
     post = self.get_post(pk)
     post.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
+
+# @csrf_exempt
+# def SaveFile(request):
+#     file=request.FILES['uploadedFile']
+#     file_name = default_storage.save(file.name,file)
+
+#     return JsonResponse(file_name,safe=False)

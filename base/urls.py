@@ -7,7 +7,7 @@ urlpatterns=[
   
   path('api/neighbors/',views.NeighborhoodList.as_view(),name='neighbor'),
   path('api/update/neighbors/<int:pk>/',views.NeighborhoodList.as_view(),name='update_neighbors'),
-  re_path('api/delete/(?P<pk>[0-9]+)/',views.NeighborhoodList.as_view(),name='delete_neighbors'),
+  re_path('api/delete/neighbors/(?P<pk>[0-9]+)/',views.NeighborhoodList.as_view(),name='delete_neighbors'),
 
   path('api/business/',views.BusinessList.as_view(),name='business'),
   re_path('api/update/business/(?P<pk>[0-9]+)/',views.BusinessList.as_view(),name='update_business'),
@@ -21,6 +21,7 @@ urlpatterns=[
   path('api/update/post/<int:pk>/',views.PostList.as_view(),name='update_post'),
   path('api/delete/post/<int:pk>/',views.PostList.as_view(),name='delete_post'),
   
+ 
 ]
 
 if settings.DEBUG:
