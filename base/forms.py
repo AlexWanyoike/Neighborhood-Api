@@ -1,11 +1,23 @@
 from django import forms
-from .models import Neighborhood, Post, Business
+from .models import Neighborhood, Post, Business 
 from django.contrib.auth.models import User
 
-# class NewArticleForm(forms.ModelForm):
-#     class Meta:
-#         model = Article
-#         exclude = ['editor', 'pub_date']
-#         widgets = {
-#             'tags': forms.CheckboxSelectMultiple(),
-#         }
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        exclude = ['username']
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        exclude = ['username', 'neighbourhood']
+
+class BusinessForm(forms.ModelForm):
+    class Meta:
+        model = Business
+        exclude = ['owner', 'neighbourhood']
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        exclude = ['username', 'post']

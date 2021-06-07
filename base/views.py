@@ -14,7 +14,7 @@ from rest_framework import filters
 # Create your views here.
 class NeighborhoodList(APIView):
   serializer_class=NeighborhoodSerializer
-  permission_classes = (IsAdminOrReadOnly,)
+  # permission_classes = (IsAdminOrReadOnly,)
 
   def get_neighborhood(self, pk):
     try:

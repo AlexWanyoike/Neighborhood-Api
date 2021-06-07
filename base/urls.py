@@ -4,7 +4,7 @@ from django.urls import path, re_path
 from . import views
 
 urlpatterns=[
-
+  
   path('api/neighbors/',views.NeighborhoodList.as_view(),name='neighbor'),
   path('api/update/neighbors/<int:pk>/',views.NeighborhoodList.as_view(),name='update_neighbors'),
   re_path('api/delete/(?P<pk>[0-9]+)/',views.NeighborhoodList.as_view(),name='delete_neighbors'),
